@@ -4,7 +4,6 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:23.0.7
-    container_name: keycloak
     volumes:
       - ./import:/opt/keycloak/data/import
     environment:
