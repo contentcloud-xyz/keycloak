@@ -8,8 +8,8 @@ services:
       - ./import:/opt/keycloak/data/import
     environment:
       KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://keycloakdb:5432/keycloak
-      KC_DB_USERNAME: keycloak
+      KC_DB_URL: jdbc:postgresql://gensformdb:5432/keycloak
+      KC_DB_USERNAME: gensform
       KC_DB_PASSWORD: password
       KC_HOSTNAME: localhost
       KC_HOSTNAME_PORT: 8080
@@ -22,18 +22,21 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: password
     command: start-dev --import-realm
     depends_on:
-      - keycloakdb
+      - gensformdb
     ports:
       - 8080:8080
 
-  keycloakdb:
+  gensformdb:
     image: postgres:15
+    container_name: gensformdb
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
+      POSTGRES_USER: gensform
       POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
 
 volumes:
   postgres_data:
