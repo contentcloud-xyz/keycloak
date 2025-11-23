@@ -6,6 +6,8 @@ services:
     image: quay.io/keycloak/keycloak:23.0.7
     volumes:
       - ./import:/opt/keycloak/data/import
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
     environment:
       KC_DB: postgres
       KC_DB_URL: jdbc:postgresql://gensformdb:5432/keycloak
